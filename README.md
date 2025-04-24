@@ -19,7 +19,6 @@
 <li>Use positional arguments in command line to accept user inputs.</li>
 <li>Use a JSON file to store the tasks in the current directory.</li>
 <li>The JSON file should be created if it does not exist.</li>
-<li>Use the native file system module of your programming language to interact with the JSON file.</li>
 <li>Do not use any external libraries or frameworks to build this project.</li>
 <li>Ensure to handle errors and edge cases gracefully.</li>
 </ul>
