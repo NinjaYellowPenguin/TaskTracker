@@ -85,7 +85,7 @@ public class TestTaskService {
     @Test
     public void testMarkTodo() throws Exception {
     	Task task = service.add("testMArkTodo");        
-        Task updatedTask = service.markDone(task.getId());
+        Task updatedTask = service.markTodo(task.getId());
         assertEquals(Status.TODO, updatedTask.getStatus());
     }
 
@@ -97,7 +97,6 @@ public class TestTaskService {
 
         Set<Task> tasks = service.findAll();
 
-        System.out.println(JsonManager.getInstance().readOrCreate());
         assertEquals(2, tasks.size());
     }
 

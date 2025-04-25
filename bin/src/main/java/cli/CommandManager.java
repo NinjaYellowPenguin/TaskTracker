@@ -14,8 +14,8 @@ public class CommandManager {
 	
 	public void handleCommand(String[] args) {
 		
-		if (args.length < 2) {
-	        System.out.println("Missing task description. Usage: task-cli add \"Buy groceries\"");
+		if (args.length < 0) {
+	        System.out.println("Missing args.");
 	        return;
 	    }
 		
@@ -26,7 +26,7 @@ public class CommandManager {
 	            handleAdd(args);
 	            break;
 	        case "list":
-	            //handleList();
+	            handleList(args);
 	            break;
 	        case "delete":
 	            //handleDelete(args);
@@ -37,7 +37,18 @@ public class CommandManager {
 	    }
 	}
 	
+	private void handleList(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void handleAdd(String[] args) {
+		
+		if (args.length < 2) {
+	        System.out.println("Missing task description. Usage: task-cli add \"Buy groceries\"");
+	        return;
+	    }
+		
 	    String description = args[1].trim();
 	    description = description.replaceAll("^\"|\"$", "");	
 	    Task result = taskService.add(description);
