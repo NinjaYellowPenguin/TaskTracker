@@ -1,6 +1,8 @@
 package cli;
 
 
+import java.util.Set;
+
 import models.Task;
 import services.TaskService;
 
@@ -38,8 +40,13 @@ public class CommandManager {
 	}
 	
 	private void handleList(String[] args) {
-		// TODO Auto-generated method stub
-		
+		if(args.length == 1) {
+			Set<Task> tasks = taskService.findAll();
+			tasks.forEach(System.out::println);
+		}
+		if(args.length > 1) {
+			
+		}
 	}
 
 	private void handleAdd(String[] args) {

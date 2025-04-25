@@ -56,4 +56,16 @@ public class Task {
     public int hashCode() {
         return Objects.hash(id);
     }
+    
+    @Override
+    public String toString() {
+    	StringBuilder msg = new StringBuilder();
+    	msg.append("\nID: = ").append(getId());
+    	msg.append("\nDescription = ").append(getDescription());
+    	msg.append("\nStatus = ").append(getStatus().toString());
+    	msg.append("\nCreatedAt = ").append(getCreatedAt());
+    	msg.append("\nUpdatedAt = ").append(getUpdatedAt());
+    	msg.append("\n");
+    	return msg.toString();
+    }
 }
