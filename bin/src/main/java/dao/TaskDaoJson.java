@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import models.Task;
 import persistence.JsonManager;
@@ -13,9 +14,12 @@ public class TaskDaoJson implements TaskDao{
 	
 	private JsonManager jsonManager;
 	private Set<Task> tasks;
+	private ObjectMapper mapper;
 	
 	public TaskDaoJson() {
 		jsonManager = JsonManager.getInstance();
+		this.mapper = new ObjectMapper();
+		this.mapper.registerModule(new JavaTimeModule());
 		refresh();
 	}
 	
@@ -52,7 +56,6 @@ public class TaskDaoJson implements TaskDao{
 	}
 	
 	private Set<Task> parseTasks(String json) {
-        ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(json, new TypeReference<Set<Task>>() {});
         } catch (IOException e) {
@@ -62,7 +65,7 @@ public class TaskDaoJson implements TaskDao{
     }
 	
 	private String toJson(Set<Task> tasks2) {
-        ObjectMapper mapper = new ObjectMapper();
+        
         try {
             return mapper.writeValueAsString(tasks2);
         } catch (IOException e) {
@@ -70,5 +73,20 @@ public class TaskDaoJson implements TaskDao{
             return "[]";
         }
     }
+
+	@Override
+	public Task findById(String id) {
+		for(Task t: tasks) {
+			if(t.getId().equals(id)) {
+				return t;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Set<Task> findAll() {
+		return tasks;
+	}
 
 }

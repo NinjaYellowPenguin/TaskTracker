@@ -11,7 +11,7 @@ public class JsonManager {
 	private static JsonManager instance;
 	
 	private final Path PATH = Paths.get("TaskPersistence.json");
-	private final String emptyJson = "{ \"tasks\": [] }";
+	private final String emptyJson = "[]";
 	
 	private JsonManager() {}
 	
@@ -41,6 +41,13 @@ public class JsonManager {
     		instance = new JsonManager();
     	}
     	return instance;
+    }
+    
+    public boolean clear() {
+    	if(write(emptyJson).equals(emptyJson)) {
+    		return true;
+    	}
+    	return false;
     }
 
 }
